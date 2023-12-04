@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom';
+
 const SignUp = () => {
     const { register, handleSubmit, formState: { errors } } = useForm()
     const [loader,setLoader] = useState(false)
-const [error,setError] = useState('')
+    const [error, setError] = useState('')
+    const navigate = useNavigate()
 
     const submitHandler = (data) => {
         setLoader(true)
@@ -17,6 +20,7 @@ const [error,setError] = useState('')
                 if (res.insertedId) {
                     setLoader(false)
                     alert('sign up successfull')
+                    navigate('/')
                 } else {
                     setLoader(false)
                     setError(res.msg)
@@ -59,7 +63,7 @@ const [error,setError] = useState('')
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" placeholder="password" className="input input-bordered" {...register('password', { required: true, minLength: 6 })} />
+                                <input type="password" placeholder="password" className="input input-bordered" {...register('password', { required: true, minLength: 6 })}/>
                                 {errors.password?.type === 'required' && <p className="text-red-500">password is requird</p>}
                                 {errors.password?.type === 'minLength' && <p className="text-red-500">password minimum 6 characters</p>}
                             </div>
