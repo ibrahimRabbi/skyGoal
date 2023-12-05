@@ -3,6 +3,7 @@ import SignIn from "./Authentication/SignIn"
 import SignUp from "./Authentication/SignUp"
 import ProductDetail from "./Components/ProductDetail"
 import Home from "./Components/Home"
+import Protected from "./Components/Protected"
 
  
 function App() {
@@ -11,6 +12,10 @@ function App() {
     {
       path: '/',
       element: <Home/>
+    },
+    {
+      path: '/protect',
+      element:<Protected/>
     },
     {
       path: '/details',

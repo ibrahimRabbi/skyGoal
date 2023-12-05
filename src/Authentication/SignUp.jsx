@@ -17,8 +17,9 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(res => {
-                if (res.insertedId) {
+                if (res?.insertedUser?.insertedId && res.refreshToken) {
                     setLoader(false)
+                    localStorage.setItem('token', res.refreshToken)
                     alert('sign up successfull')
                     navigate('/')
                 } else {
@@ -29,7 +30,7 @@ const SignUp = () => {
     }
 
     if (loader) {
-        return <h1 className='text-2xl text-center font-semibold'>Loading.....</h1>
+        return <h1 className='text-2xl text-center font-semibold mt-48'>Loading.....</h1>
     }
 
     return (
